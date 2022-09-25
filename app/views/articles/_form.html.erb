@@ -1,27 +1,34 @@
-<%= form_with(model: article) do |form| %>
-  <% if article.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
+<div style="margin-left: 30%; margin-right: 20%;">
 
-      <ul>
-        <% article.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+  <%= form_with(model: article) do |form| %>
+    <% if article.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
+
+        <ul>
+          <% article.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div>
+      <div class="field">
+         <%= form.label :image %>
+         <%= form.file_field :image %>
     </div>
-  <% end %>
-<div class="field">
-   <%= form.label :image %>
-   <%= form.file_field :image %>
+
+    <div>
+    <div>
+      <%= form.label :caption, style: "display: block" %>
+      <%= form.text_area :caption %>
+    </div>
+
+<br>   
+      <%= form.submit %>
+    </div>
+  <% end %> 
+
 </div>
 
-  <div>
-    <%= form.label :caption, style: "display: block" %>
-    <%= form.text_area :caption %>
-  </div>
 
-<br>
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
