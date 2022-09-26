@@ -1,5 +1,5 @@
 class Article < ApplicationRecord
-    has_many :comments
+    has_many :comments, dependent: :destroy
 
  include ImageUploader::Attachment(:image)
  validates :image, presence: true

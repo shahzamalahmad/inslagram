@@ -7,8 +7,11 @@
 
       <p>
         <%#= form.label :body %><br>
-        <%= form.text_field :body %>
-        <%= form.submit %>
+        <%= form.text_field :body, class:"border-0", style:"width: 70%; height: 50px;", placeholder:"add a comment" %>
+
+        <%= form.submit value:"post", class:"btn btn-outline-primary" %>
+
+
 
   </div>
       </p>

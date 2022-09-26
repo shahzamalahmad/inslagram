@@ -46,23 +46,7 @@
                 </div>
               </div>
         <div class="border-bottom">
-          <% @article.comments.each do |c| %>       
-              <div class="row">
-                <div class="col-20">
-                  <p>
-                    <strong>
-                      <%= c.commenter %>
-                    </strong>
-                      <%= c.body %>
-                       <br>
-                       <small>
-                         <%= time_ago_in_words(c.created_at) %>
-                       </small>
-                      
-                  </p>
-                </div>
-              </div>
-          <% end %>
+            <%= render @article.comments %>
         </div>
         <div class="container">
             <div class="row">
