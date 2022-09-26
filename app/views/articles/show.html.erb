@@ -1,13 +1,101 @@
-<p style="color: green"><%= notice %></p>
+<!-- <p style="color: green"><%#= notice %></p>
 
 <strong>Image data:</strong>
-<%= image_tag @article.image_url if @article.image %>
+<%#= image_tag @article.image_url if @article.image %>
 
 
 
 <div>
-  <%= link_to "Edit this article", edit_article_path(@article) %> |
-  <%= link_to "Back to articles", articles_path %>
+  <%#= link_to "Edit this article", edit_article_path(@article) %> |
+  <%#= link_to "Back to articles", articles_path %>
 
-  <%= button_to "Destroy this article", @article, method: :delete %>
+  <%#= button_to "Destroy this article", @article, method: :delete %>
 </div>
+ -->
+<div style="margin-left: 25%; margin-top: 30%;">
+
+  
+    <div id="<%= dom_id @article %>">
+      <div class="container">
+        <div class="row">
+          <div class="col-4">
+              <p>
+                <% if @article.image %>
+                    <%= image_tag @article.image_url, style:"width: 200px; height: 200px;" %>
+                <% end %>
+              </p>
+          </div>
+          <div class="col-4">
+             <div class="row">
+                <div class="col-20">
+                  <p class="border-bottom">
+                    <strong>
+                      <%= current_user.username %>
+                    </strong>
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-20">
+                  <p class="border-bottom">
+                    <strong>
+                      <%= @article.caption %>
+                    </strong>
+
+                  </p>
+                </div>
+              </div>
+        <div class="border-bottom">
+          <% @article.comments.each do |c| %>       
+              <div class="row">
+                <div class="col-20">
+                  <p>
+                    <strong>
+                      <%= c.commenter %>
+                    </strong>
+                      <%= c.body %>
+                       <br>
+                       <small>
+                         <%= time_ago_in_words(c.created_at) %>
+                       </small>
+                      
+                  </p>
+                </div>
+              </div>
+          <% end %>
+        </div>
+        <div class="container">
+            <div class="row">
+              <div class="col-2">
+                  like
+              </div>
+              <div class="col-4">
+
+                  <%= link_to "comment", new_article_path(@article), class:"fa-regular fa-heart" %>
+                
+
+              </div>
+              <div class="col-2">
+                share
+              </div>                
+            </div>     
+            <br>
+            <p class="border-bottom">
+               <strong>
+                <%= "130,074 likes" %>
+              </strong><br>
+            <div class="row">
+              <%= render 'comments/form' %>
+            </div>
+               
+        </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+      
+      
+</div>
+
+
