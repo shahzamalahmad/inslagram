@@ -1,15 +1,17 @@
 <div class="row">
-  <div class="col-20">
-    <p>
-      <strong>
-        <%= comment.commenter %>
-      </strong>
-        <%= comment.body %>
-         <br>
-         <small>
-           <%= time_ago_in_words(comment.created_at) %>
-         </small>
-        
-    </p>
-  </div>
+  <% unless @article.archived? %>
+    <div class="col-20">
+      <p>
+        <strong>
+          <%= comment.commenter %>
+        </strong>
+          <%= comment.body %>
+           <br>
+        <small>
+             <%= time_ago_in_words(comment.created_at) %>
+        </small>
+      </p>
+    </div>
+  <% end %>
+
 </div>

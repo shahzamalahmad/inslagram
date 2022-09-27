@@ -14,15 +14,18 @@
     <% end %>
     <div>
       <div class="field">
-         <%= form.label :image %>
          <%= form.file_field :image %>
     </div>
 
     <div>
     <div>
-      <%= form.label :caption, style: "display: block" %>
-      <%= form.text_area :caption %>
+      <%= form.text_area :caption, placeholder:"write something" %>
     </div>
+    <div>
+      <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
+      <%= form.label :status %><br>
+    </div>
+
 
 <br>   
       <%= form.submit %>
