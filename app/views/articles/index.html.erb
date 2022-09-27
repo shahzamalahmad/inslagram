@@ -56,10 +56,10 @@
                   <%= form_with model: [ article, article.comments.build ] do |form| %>
                       <%#= form.text_field :current_user.username %>
                       <%= form.text_field :body, class:"border-0", style:"width: 85%; height: 50px;", placeholder:"add a comment" %>
+
+                      <%= form.submit value:"post", class:"btn btn-outline-none", style:"color: royalblue" %>
+
                       <%= form.select :status, ['public', 'private', 'archived'], selected: 'public', value:"public", type:"hidden" %>
-
-
-                      <%= form.submit value:"post", class:"btn btn-outline-primary" %>
                   <% end %>
             </div>
           </div>

@@ -9,10 +9,10 @@
         <%#= form.label :body %><br>
         <%= form.text_field :body, class:"border-0", style:"width: 70%; height: 50px;", placeholder:"add a comment" %>
 
-        <%= form.submit value:"post", class:"btn btn-outline-none", style:"color: blue;" %>
+        <%= form.submit value:"post", class:"btn btn-outline-none", style:"color: royalblue;" %>
       </p>
       <p>
-        <%= form.select :status, ['public', 'private', 'archived'], selected: 'public', value:"public", type:"hidden" %>
+        <%= form.select :status, ['public', 'private', 'archived'], selected: 'public', type: :hidden %>
       </p>
   </div>
       
