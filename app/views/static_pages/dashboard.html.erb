@@ -10,7 +10,8 @@
        <div class="col-md-auto">
 	      		profile pic
 	      		<br>
-	      		<%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete } %>
+	      		<%#= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete } %>
+	      		<%= button_to "log out", destroy_user_session_path, :method => :delete %>
 	    </div>
     </div>
     <div class="col">

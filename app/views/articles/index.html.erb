@@ -8,7 +8,7 @@
             <div id="<%= dom_id article %>">
               <div style="background-color: white; height: 50px;">
                 <strong>
-                  <%= current_user.username %>
+                  <%= link_to current_user.username %>
                 </strong>
                 <%= link_to "D", article, method: :delete %>
                 
@@ -27,7 +27,7 @@
                       like
                   </div>
                   <div class="col-2">
-                      <%= link_to "comment", new_article_path(article) %>
+                      <%= link_to "comment", article_path(article) %>
                   </div>
                   <div class="col-1">
                     share
