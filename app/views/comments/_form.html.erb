@@ -6,7 +6,9 @@
   <div class="col-20">
 
       <p>
-        <%#= form.label :body %><br>
+        <%= form.number_field :article_id, value:@article.id, type:"hidden" %><br>
+        <%= form.text_field :commenter, value:current_user.username, type:"hidden" %>
+        <%= form.number_field :user_id, value:current_user.id, type:"hidden" %>
         <%= form.text_field :body, class:"border-0", style:"width: 70%; height: 50px;", placeholder:"add a comment" %>
 
         <%= form.submit value:"post", class:"btn btn-outline-none", style:"color: royalblue;" %>

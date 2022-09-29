@@ -15,7 +15,10 @@
     <div>
       <div class="field">
          <%= form.file_field :image %>
+         <%= form.text_field :title, value:current_user.username, type:"hidden" %>
+
     </div>
+    <br>
 
     <div>
     <div>
@@ -23,7 +26,7 @@
     </div>
     <div>
       <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
-      <%= form.label :status %><br>
+       <%= form.number_field :user_id, value:current_user.id, type:"hidden" %>
     </div>
 
 

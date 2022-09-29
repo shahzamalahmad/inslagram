@@ -8,7 +8,7 @@
             <div id="<%= dom_id article %>">
               <div style="background-color: white; height: 50px;">
                 <strong>
-                  <%= link_to current_user.username %>
+                  <%= link_to article.title %>
                 </strong>
                 <%= link_to "D", article, method: :delete %>
                 
@@ -39,7 +39,7 @@
                     <%= "130,074 likes" %>
                   </strong><br>
                   <strong>
-                    <%= current_user.username %>
+                    <%= article.title %>
                     
                   </strong>
                    <%= article.caption %>
@@ -60,6 +60,9 @@
                       <%= form.submit value:"post", class:"btn btn-outline-none", style:"color: royalblue" %>
 
                       <%= form.select :status, ['public', 'private', 'archived'], selected: 'public', value:"public", type:"hidden" %>
+                      <%= form.number_field :article_id, value:article.id, type:"hidden" %><br>
+                      <%= form.text_field :commenter, value:current_user.username, type:"hidden" %>
+                      <%= form.number_field :user_id, value:current_user.id, type:"hidden" %>
                   <% end %>
             </div>
           </div>
