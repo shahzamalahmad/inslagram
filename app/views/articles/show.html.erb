@@ -30,7 +30,7 @@
                 <div class="col-20">
                   <p class="border-bottom">
                     <strong>
-                      <%= current_user.username %>
+                      <%= link_to @article.user.username, static_pages_dashboard_path %>
                     </strong>
                   </p>
                 </div>
@@ -39,7 +39,7 @@
                 <div class="col-20">
                   <p class="border-bottom">
                     <strong>
-                      <%= @article.title %>
+                      <%= link_to @article.user.username, static_pages_dashboard_path %> &nbsp &nbsp
                       <%= @article.caption %>
                     </strong>
 
@@ -52,7 +52,11 @@
         <div class="container">
             <div class="row">
               <div class="col-2">
-                  like
+                  <% if @article.liked?(current_user) %>
+                        <%= button_to "like", like_path(@article), methode:"put", desabled: true %>
+                      <% else %>
+                        <%= button_to "like", like_path(@article), methode:"put" %>
+                      <% end %>
               </div>
               <div class="col-4">
 

@@ -32,7 +32,11 @@
 	  <br>
 	  <div class="row">
 	    <div class="col">
-	      <strong><%= Article.public_count %></strong>	 &nbsp posts 
+	      <strong><%#= Article.public_count %>
+	      	<%= Article.where(user_id:(current_user.id)).count %>
+	      	<%#= Article.select(:user_id).distinct.count %>
+	      	
+	      </strong>	 &nbsp posts 
 	    </div>
 	    <div class="col">
 	      followers	

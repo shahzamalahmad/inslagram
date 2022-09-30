@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
 
 
-
+  put '/article/:id/like', to: 'article#like', as: 'like'
 
   root "articles#index"
 end

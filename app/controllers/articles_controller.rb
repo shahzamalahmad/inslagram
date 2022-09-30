@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: %i[ show edit update destroy ]
-
+  before_action :correct_user, only: %i[edit update distroy ]
   # GET /articles or /articles.json
   def index
     @articles = Article.all
@@ -56,6 +56,16 @@ class ArticlesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  def like
+    @article = article.all.find(params[:id])
+    Like.create(user_id: current_user.id, article_id: @article.id)
+    redirect_to articles_path(@article)
+  end
+
+  def correct_user
+         @article = current_user.articles.find_by(id: params[:id])
+          redirect_to articles_path, notice: "Not authorised to this article..." if @article.nil?
+ end
 
   private
     # Use callbacks to share common setup or constraints between actions.
