@@ -29,14 +29,10 @@
                 <div class="row">
                   <div class="col-1">
                       <% if article.liked?(current_user) %>
-                        <%= button_to "like", like_path(article), methode:"put", desabled: true %>
+                        <%= button_to "like", article_like_path(article), method: :put, disabled: article.liked?(current_user) %>
                       <% else %>
-                        <%= button_to "like", like_path(article), methode:"put" %>
+                        <%= button_to "like", article_like_path(article), method: :put %>
                       <% end %>
-                      <%#= form_tag(like_path, {:method => :post}) do %>
-                      <%#= contant_tag(:i, nil, class: "fa fa-thumbs-o-up", "aria-hidden": true, :onclick => "this.form.submit();") %>
-                      <%#= @article.thumbs_up_total %>
-                      <%# end %>
                   </div>
                   <div class="col-2">
                       <%= link_to "comment", article_path(article) %>
@@ -48,7 +44,7 @@
 
                 <p>
                    <strong>
-                    <%= "130,074 likes" %>
+                    <%= Like.where(article_id:(article.id)).count.to_s + " likes" %>
                   </strong><br>
                   <strong>
                     <%= link_to article.user.username, static_pages_dashboard_path %>

@@ -8,11 +8,13 @@ Rails.application.routes.draw do
 
 
   resources :articles do
+    put :like
+
     resources :comments
   end
 
-
-  put '/article/:id/like', to: 'article#like', as: 'like'
+  # POST /articles/:id/likes
+  # put '/article/:id/like', to: 'article#like', as: 'like'
 
   root "articles#index"
 end

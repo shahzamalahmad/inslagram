@@ -57,7 +57,8 @@ class ArticlesController < ApplicationController
     end
   end
   def like
-    @article = article.all.find(params[:id])
+    # binding.pry
+    @article = Article.all.find(params[:article_id])
     Like.create(user_id: current_user.id, article_id: @article.id)
     redirect_to articles_path(@article)
   end

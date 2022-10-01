@@ -52,11 +52,11 @@
         <div class="container">
             <div class="row">
               <div class="col-2">
-                  <% if @article.liked?(current_user) %>
-                        <%= button_to "like", like_path(@article), methode:"put", desabled: true %>
-                      <% else %>
-                        <%= button_to "like", like_path(@article), methode:"put" %>
-                      <% end %>
+                <% if @article.liked?(current_user) %>
+                  <%= button_to "like", article_like_path(@article), method: :put, disabled: @article.liked?(current_user) %>
+                <% else %>
+                  <%= button_to "like", article_like_path(@article), method: :put %>
+                <% end %>
               </div>
               <div class="col-4">
 
@@ -71,7 +71,7 @@
             <br>
             <p class="border-bottom">
                <strong>
-                <%= "130,074 likes" %>
+                <%= Like.where(article_id:(@article.id)).count.to_s + " likes" %>
               </strong><br>
             <div class="row">
               <%= render 'comments/form' %>
