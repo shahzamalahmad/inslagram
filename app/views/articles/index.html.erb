@@ -7,15 +7,11 @@
 
             <div id="<%= dom_id article %>">
               <div style="background-color: white; height: 50px;">
-                <%# if article.user == current_user %>
-                <%# if current_user == currect_user %>
                 <strong>
-                  <%#= link_to article.title %>
                   <%= link_to article.user.username, static_pages_dashboard_path %>
                 </strong>
-                <%# end %>
-                <%= link_to "D", article, method: :delete %>
-                
+                <%= link_to "D", article_path(article), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, style:"float :right;" %>
+                <%#= link_to "D", article, method: :delete, style:"float :right;" %>
               </div>
               
               <div class="text-center">
@@ -44,7 +40,13 @@
 
                 <p>
                    <strong>
-                    <%= Like.where(article_id:(article.id)).count.to_s + " likes" %>
+                    <%# binding.pry %>
+                    <% if Like.all.where(article_id:article.id).first.user.username == article.user.username %>
+                      <%= link_to Like.all.where(article_id:article.id).second.user.username %>
+                    <% else %>
+                      <%= link_to Like.all.where(article_id:article.id).first.user.username %>
+                    <% end %>
+                    <%= " and " + (Like.where(article_id:(article.id)).count - 1).to_s + " others" %>
                   </strong><br>
                   <strong>
                     <%= link_to article.user.username, static_pages_dashboard_path %>
@@ -62,10 +64,9 @@
               <%= time_ago_in_words(article.created_at) %>
             </div>
                   <%= form_with model: [ article, article.comments.build ] do |form| %>
-                      <%#= form.text_field :current_user.username %>
                       <%= form.text_field :body, class:"border-0", style:"width: 85%; height: 50px;", placeholder:"add a comment" %>
 
-                      <%= form.submit value:"post", class:"btn btn-outline-none", style:"color: royalblue" %>
+                      <%= form.submit value:"post", class:"btn btn-outline-none", style:"color: royalblue; float: right" %>
 
                       <%= form.select :status, ['public', 'private', 'archived'], selected: 'public', value:"public", type:"hidden" %>
                       <%= form.number_field :article_id, value:article.id, type:"hidden" %><br>
