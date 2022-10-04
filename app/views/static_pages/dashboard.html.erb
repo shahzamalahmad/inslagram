@@ -69,6 +69,27 @@
 	</div>
 	  
 </div>
+<br>
+<div class="border-top", style="margin-left: 30%;">
+	<nav aria-label="Page navigation example">
+	  <ul class="pagination justify-content-center">
+	    <li class="page-item", style="margin-left: 30px;"> 
+        <%# @articles.each do |article| %>
+
+			    <%# if article.image %>
+		          <%#= image_tag @article.image_url, style:"width: 200px; height: 200px;" %>
+			    <%# end %>
+			  <%# end %>
+	    <%= link_to "POSTS" %>
+	    	 </li>
+	     <li class="page-item", style="margin-left: 30px;"><%= link_to "REELS" %></li>
+	    <li class="page-item", style="margin-left: 30px;"><%= link_to "SAVED" %></li>
+	    <li class="page-item", style="margin-left: 30px;"><%= link_to "TAGGED" %></li>
+	  </ul>
+	</nav>
+	
+	
+</div>
 
 
 
