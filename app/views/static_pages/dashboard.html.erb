@@ -1,100 +1,100 @@
-<% if user_signed_in? %>
+<div style="margin-left: 25%; margin-right: 25%;">
+		<% if user_signed_in? %>
+		<br>
+		<div class="container">
+		  <div class="row">
+		    <div class="col-4">
+		       <div style="display:table-cell; vertical-align:middle; text-align:center">
+			      		<%= link_to image_tag(current_user.avatar, class:"rounded-circle", style:"width: 150px; height: 250; margin-left:30%; margin-top: 30%;"), edit_user_registration_path %>
+			      		<%#= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete } %>
+			      		<%#= current_user.email %>
+				    </div>
+			    </div>
+			  <div class="col">
+		      <div class="row">
+		      	 <div class="col">
+
+					      <%= image_tag current_user.avatar_thumbnail, class:"rounded-circle" %>
+					  
+					      <strong class="h3"><%= current_user.username %></strong>
+					    </div>
+					    <div class="col">
+					      <%= link_to 'Edit profile', edit_user_registration_path %>
+					    </div>
+					    <div class="col">
+					    	<%= button_to "log out", destroy_user_session_path, :method => :delete %>
+					      	settings
+
+					    </div>
+					  </div>
+					  <br>
+				  <div class="row">
+				   
+				    <div class="col-3">
+
+				      <strong>
+				      	<%= Article.select(:user_id).distinct.count %>
+				      </strong>	 &nbsp posts 
+				    </div>
+				    <div class="col">
+				      followers	
+				    </div>
+				    <div class="col">
+				      following
+				    </div>
+				  </div>
+
+				  <br>
+				  <div class="row">
+				    
+				     <%= current_user.username %>
+
+				  </div>
+				  <div class="row">
+						  <%= current_user.name %>
+
+				  </div>
+				  <div class="row">
+				    	<%= current_user.bio %>
+
+				  </div>
+				   <div class="row">
+				    	<%= link_to current_user.website %>
+				  </div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<br>
+		<div class="border-top">
+			<nav aria-label="Page navigation example", style="background-color: lightblue;">
+			  <ul class="pagination justify-content-center">
+			    <li class="page-item", style="margin-left: 30px;"> 
+		        
+			    <%= link_to "POSTS" %>
+			    	 </li>
+			     <li class="page-item", style="margin-left: 30px;"><%= link_to "REELS" %></li>
+			    <li class="page-item", style="margin-left: 30px;"><%= link_to "SAVED" %></li>
+			    <li class="page-item", style="margin-left: 30px;"><%= link_to "TAGGED" %></li>
+			  </ul>
+			</nav>
+			<% @articles.each do |article| %>
+
+					    <% if article.image && article.user == current_user %>
+				          <%= image_tag article.image_url, style:"width: 200px; height: 200px;" %>
+					    <% end %>
+					  <% end %>
+			
+			
+		</div>
 
 
-<br>
 
 
-<div class="container">
-  <div class="row">
-    <div class="col">
-       <div class="col-md-auto">
-	      		profile pic
-	      		<br>
-	      		<%#= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete } %>
-	      		<%= current_user.email %>
-	      		<%= button_to "log out", destroy_user_session_path, :method => :delete %>
-	    </div>
-    </div>
-    <div class="col">
-      <div class="row">
-	    <div class="col">
-	      <h3><%= current_user.username %></h3>
 
-	    </div>
-	    <div class="col">
-	      <%= link_to 'Edit profile', edit_user_registration_path %>
-	    </div>
-	    <div class="col">
-	      	settings
-
-	    </div>
-	  </div>
-	  <br>
-	  <div class="row">
-	    <div class="col">
-	      <strong><%#= Article.public_count %>
-	      	<%= Article.where(user_id:(current_user.id)).count %>
-	      	<%#= Article.select(:user_id).distinct.count %>
-	      	
-	      </strong>	 &nbsp posts 
-	    </div>
-	    <div class="col">
-	      followers	
-	    </div>
-	    <div class="col">
-	      following
-	    </div>
-	  </div>
-
-	  <br>
-	  <div class="row">
-	    
-	     <%= current_user.username %>
-
-	  </div>
-	  <div class="row">
-			  <%= current_user.name %>
-
-	  </div>
-	  <div class="row">
-	    	<%= current_user.bio %>
-
-	  </div>
-	   <div class="row">
-	    	<%= link_to current_user.website %>
-
-	  </div>
-
-
-	</div>
-	  
+		<% else %>
+		  <%= link_to "Sign up", new_user_registration_path %> |
+		  <%= link_to "Login", new_user_session_path %>
+		<% end %>
 </div>
-<br>
-<div class="border-top", style="margin-left: 30%;">
-	<nav aria-label="Page navigation example">
-	  <ul class="pagination justify-content-center">
-	    <li class="page-item", style="margin-left: 30px;"> 
-        <%# @articles.each do |article| %>
 
-			    <%# if article.image %>
-		          <%#= image_tag @article.image_url, style:"width: 200px; height: 200px;" %>
-			    <%# end %>
-			  <%# end %>
-	    <%= link_to "POSTS" %>
-	    	 </li>
-	     <li class="page-item", style="margin-left: 30px;"><%= link_to "REELS" %></li>
-	    <li class="page-item", style="margin-left: 30px;"><%= link_to "SAVED" %></li>
-	    <li class="page-item", style="margin-left: 30px;"><%= link_to "TAGGED" %></li>
-	  </ul>
-	</nav>
-	
-	
-</div>
-
-
-
-
-<% else %>
-  <%= link_to "Sign up", new_user_registration_path %> |
-  <%= link_to "Login", new_user_session_path %>
-<% end %>

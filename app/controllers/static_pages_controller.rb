@@ -3,5 +3,6 @@ class StaticPagesController < ApplicationController
   end
 
   def dashboard
+    @articles = Article.all
   end
 end

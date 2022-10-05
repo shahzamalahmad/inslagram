@@ -76,3 +76,5 @@ gem 'shrine', '~> 3.3'
 gem 'image_processing', '~> 1.12', '>= 1.12.1'
 gem "devise", github: "heartcombo/devise", ref: "f8d1ea90bc3"
 gem "letter_opener", group: :development
+
+gem "ruby-vips"
