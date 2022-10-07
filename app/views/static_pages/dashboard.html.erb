@@ -5,7 +5,7 @@
 		  <div class="row">
 		    <div class="col-4">
 		       <div style="display:table-cell; vertical-align:middle; text-align:center">
-			      		<%= link_to image_tag(current_user.avatar, class:"rounded-circle", style:"width: 150px; height: 250; margin-left:30%; margin-top: 30%;"), edit_user_registration_path %>
+			      		<%= image_tag current_user.avatar_thumbnail, class:"rounded-circle", style:"width: 150px; height: 250; margin-top: 30%;" %>
 			      		<%#= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete } %>
 			      		<%#= current_user.email %>
 				    </div>

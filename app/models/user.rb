@@ -14,7 +14,7 @@ class User < ApplicationRecord
         # avatar.variant(resize: [64, 64]).processed 
         avatar.variant(resize_to_limit: [64, 64]).processed
     else
-        "/dp.png"
+        "dp.png"
     end
   end
 
