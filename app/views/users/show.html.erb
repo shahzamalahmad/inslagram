@@ -1,0 +1,100 @@
+<div style="margin-left: 25%; margin-right: 25%;">
+		<% if user_signed_in? %>
+		<br>
+		<div class="container">
+		  <div class="row">
+		    <div class="col-4">
+		       <div style="display:table-cell; vertical-align:middle; text-align:center">
+			      		<%= image_tag @user.avatar_thumbnail, class:"rounded-circle", style:"width: 150px; height: 250; margin-top: 30%;" %>
+			      		<%#= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete } %>
+			      		<%#= @user.email %>
+				    </div>
+			    </div>
+			  <div class="col">
+		      <div class="row">
+		      	 <div class="col">
+
+					      <%= image_tag @user.avatar_thumbnail, class:"rounded-circle" %>
+					  
+					      <strong class="h3"><%= @user.username %></strong>
+					    </div>
+					    <div class="col">
+					      <%= link_to 'Edit profile', edit_user_registration_path %>
+					    </div>
+					    <div class="col">
+					    	<%= button_to "log out", destroy_user_session_path, :method => :delete %>
+					      	settings
+
+					    </div>
+					  </div>
+					  <br>
+				  <div class="row">
+				   
+				    <div class="col-3">
+
+				      <strong>
+				      	<%= Article.select(:user_id).distinct.count %>
+				      </strong>	 &nbsp posts 
+				    </div>
+				    <div class="col">
+				      followers	
+				    </div>
+				    <div class="col">
+				      following
+				    </div>
+				  </div>
+
+				  <br>
+				  <div class="row">
+				    
+				     <%= @user.username %>
+
+				  </div>
+				  <div class="row">
+						  <%= @user.name %>
+
+				  </div>
+				  <div class="row">
+				    	<%= @user.bio %>
+
+				  </div>
+				   <div class="row">
+				    	<%= link_to @user.website %>
+				  </div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<br>
+		<div class="border-top">
+			<nav aria-label="Page navigation example", style="background-color: lightblue;">
+			  <ul class="pagination justify-content-center">
+			    <li class="page-item", style="margin-left: 30px;"> 
+		        
+			    <%= link_to "POSTS" %>
+			    	 </li>
+			     <li class="page-item", style="margin-left: 30px;"><%= link_to "REELS" %></li>
+			    <li class="page-item", style="margin-left: 30px;"><%= link_to "SAVED" %></li>
+			    <li class="page-item", style="margin-left: 30px;"><%= link_to "TAGGED" %></li>
+			  </ul>
+			</nav>
+			<% @articles.each do |article| %>
+
+					    <% if article.image && article.user == @user %>
+				          <%= image_tag article.image_url, style:"width: 200px; height: 200px;" %>
+					    <% end %>
+					  <% end %>
+			
+			
+		</div>
+
+
+
+
+
+		<% else %>
+		  <%= link_to "Sign up", new_user_registration_path %> |
+		  <%= link_to "Login", new_user_session_path %>
+		<% end %>
+</div>
+

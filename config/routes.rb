@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :users
-
+  get 'users/:id', to: "users#show"
 
   resources :articles do
     put :like

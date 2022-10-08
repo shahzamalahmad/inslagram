@@ -53,13 +53,13 @@
                       <% end %>
                       <% if Like.all.where(article_id:article.id).count == 2 %>
 
-                        <%= " and " + (Like.where(article_id:(article.id)).count - 1).to_s + " others" %>
+                        <%= " and " + ((Like.where(article_id:(article.id)).count - 1)*336654).to_s + " others" %>
                         <% end %>
                     <% end %>
                     
                   </strong><br>
                   <strong>
-                    <%= link_to article.user.username, static_pages_dashboard_path %>
+                    <%= link_to article.user.username, user_path(article.user) %>
                   </strong>
                    <%= article.caption %>
                 </p>
@@ -79,7 +79,7 @@
               <%= time_ago_in_words(article.created_at) %>
             </div>
                   <%= form_with model: [ article, article.comments.build ] do |form| %>
-                      <%= form.text_field :body, class:"border-0", style:"width: 85%; height: 50px;", placeholder:"add a comment" %>
+                      <%= form.text_field :body, class:"border-0", style:"width: 85%; height: 50px; background-color: mintcream;", placeholder:"add a comment" %>
 
                       <%= form.submit value:"POST", class:"btn btn-outline-none", style:"color: royalblue; float: right" %>
 
