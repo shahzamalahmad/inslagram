@@ -13,6 +13,12 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+  post '/users/:id/follow', to: "users#follow", as: "follow_user"
+  post '/users/:id/unfollow', to: "users#unfollow", as: "unfollow_user"
+  resources :follows
+
+
+
   # POST /articles/:id/likes
   # put '/article/:id/like', to: 'article#like', as: 'like'
 

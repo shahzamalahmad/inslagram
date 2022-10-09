@@ -19,8 +19,14 @@
 					      <strong class="h3"><%= @user.username %></strong>
 					    </div>
 					    <div class="col">
-					      <%= link_to 'Edit profile', edit_user_registration_path %>
-					    </div>
+					    	    <% if @user == current_user %>
+							      <%= link_to 'Edit profile', edit_user_registration_path %>
+						        <% elsif current_user.followees.include?(@user) %>
+						            <h5><%= button_to "Unfollow", unfollow_user_path, method: "POST", class: "follow" %></h5>
+						        <% else %>
+						            <h5><%= button_to "Follow", follow_user_path, method: "POST", class: "follow" %></h5>
+						        <% end %>
+					    </div>    
 					    <div class="col">
 					    	<%= button_to "log out", destroy_user_session_path, :method => :delete %>
 					      	settings
