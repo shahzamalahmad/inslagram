@@ -8,7 +8,7 @@
             <div id="<%= dom_id article %>">
               <div style="background-color: white; height: 50px;", class="row">
                 <strong>
-                  <%= link_to article.user.username, static_pages_dashboard_path, class:"col-16" %>
+                  <%= link_to article.user.username, user_path(article.user), class:"col-16" %>
                 </strong>
                 <%= button_to "D", article_path(article), method: :delete, style:"float :right; margin-top: 0;", class:"col-1" %>
                 <%#= link_to "D", article, method: :delete, style:"float :right;" %>
@@ -37,19 +37,21 @@
                     share
                   </div>                
                 </div>     
-
                 <p>
+
                    <strong>
                     <%# binding.pry %>
                     <% if article.liked?(current_user) %>
 
-                      <% if Like.all.where(article_id:article.id).first.user.username != article.user.username %>
-                        <%= link_to Like.all.where(article_id:article.id).first.user.username %>
+                      <% if Like.all.where(article_id:article.id).first.user != article.user %>
+                        <%= link_to Like.all.where(article_id:article.id).first.user.username, user_path(article.likes.first.user) %>
                       
                       <% elsif Like.all.where(article_id:article.id).count == 1 %>
                         <% "" %>
                       <% elsif Like.all.where(article_id:article.id).first.user.username == article.user.username %>
-                        <%= link_to Like.all.where(article_id:article.id).second.user.username %>
+
+                        <%= link_to Like.all.where(article_id:article.id).second.user.username, user_path(article.likes.second.user) %>
+                        <%#= link_to Like.all.where(article_id:article.id).second.user.username, user_path(article.user) %>
                       <% end %>
                       <% if Like.all.where(article_id:article.id).count == 2 %>
 

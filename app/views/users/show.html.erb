@@ -28,8 +28,12 @@
 						        <% end %>
 					    </div>    
 					    <div class="col">
-					    	<%= button_to "log out", destroy_user_session_path, :method => :delete %>
-					      	settings
+					    	<% if @user == current_user %>
+						    	<%= button_to "log out", destroy_user_session_path, :method => :delete %>
+					      		settings
+					      	<% else %>
+					      		block/report
+					      	<% end %>
 
 					    </div>
 					  </div>
@@ -39,13 +43,15 @@
 				    <div class="col-3">
 
 				      <strong>
-				      	<%= Article.select(:user_id).distinct.count %>
+				      	<%=  User.find(params[:id]).articles.count %>
 				      </strong>	 &nbsp posts 
 				    </div>
 				    <div class="col">
-				      followers	
+				    	  <%= @user.followers.count %> followers
 				    </div>
 				    <div class="col">
+        				<%= @user.followees.count %>
+
 				      following
 				    </div>
 				  </div>

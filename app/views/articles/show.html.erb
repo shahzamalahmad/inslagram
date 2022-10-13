@@ -30,7 +30,7 @@
                 <div class="col-20">
                   <p class="border-bottom">
                     <strong>
-                      <%= link_to @article.user.username, static_pages_dashboard_path %>
+                      <%= link_to @article.user.username, user_path(@article.user) %>
                     </strong>
                   </p>
                 </div>
@@ -39,7 +39,7 @@
                 <div class="col-20">
                   <p class="border-bottom">
                     <strong>
-                      <%= link_to @article.user.username, static_pages_dashboard_path %> &nbsp &nbsp
+                      <%= link_to @article.user.username, user_path(@article.user) %> &nbsp &nbsp
                       <%= @article.caption %>
                     </strong>
 
@@ -60,7 +60,7 @@
               </div>
               <div class="col-4">
 
-                  <%= link_to "comment", new_article_path(@article), class:"fa-regular fa-heart" %>
+                  <%= link_to "comment", article_path(@article), class:"fa-regular fa-heart" %>
                 
 
               </div>
@@ -71,7 +71,7 @@
             <br>
             <p class="border-bottom">
                <strong>
-                <%= Like.where(article_id:(@article.id)).count.to_s + " likes" %>
+                <%= (Like.where(article_id:(@article.id)).count*336654).to_s + " likes" %>
               </strong><br>
             <div class="row">
               <%= render 'comments/form' %>

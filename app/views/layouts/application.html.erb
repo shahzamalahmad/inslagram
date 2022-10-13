@@ -44,9 +44,16 @@
         <li class="nav-item">
 
         </li>
-        <li class="nav-item dropdown">
-          <%= link_to "profile", static_pages_dashboard_path, class: "dropdown-item", style:"margin-left: 20px;" %>
-        </li>
+        <%# binding.pry %>
+          <li class="nav-item dropdown">
+            <% if user_signed_in? %> 
+              <%= link_to "profile", user_path(current_user), class: "dropdown-item", style:"margin-left: 20px;", class:"dropdown-item", style:"margin-left: 20px;" %>
+            <% else %>
+            <%= link_to "sign in", new_user_session_path, class:"dropdown-item", style:"margin-left: 20px;" %>
+            <%= link_to "sign up", new_user_registration_path, class:"dropdown-item", style:"margin-left: 20px;" %>
+
+            <% end %>
+          </li>
         
       </ul>
       
