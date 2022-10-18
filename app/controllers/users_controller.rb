@@ -20,6 +20,20 @@ class UsersController < ApplicationController
 	  current_user.followed_users.find_by(followee_id: @user.id).destroy
 	  redirect_back(fallback_location: user_path(@user))
 	end
+
+		# # Instantiate a new notification
+		# notification = CommentNotification.with(comment: @comment)
+
+		# # Deliver notification in background job
+		# notification.deliver_later(@comment.post.author)
+
+		# # Deliver notification immediately
+		# notification.deliver(@comment.post.author)
+
+		# # Deliver notification to multiple recipients
+		# notification.deliver_later(User.all)
+
+	private
 	
 	def user_params
       params.require(:user).permit(:name, :username, :bio, :website, :email, :phone, :gender)

@@ -8,6 +8,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1 or /articles/1.json
   def show
+     mark_notifications_as_read
   end
 
   # GET /articles/new
@@ -72,6 +73,14 @@ class ArticlesController < ApplicationController
          @article = current_user.articles.find_by(id: params[:id])
           redirect_to articles_path, notice: "Not authorised to this article..." if @article.nil?
  end
+
+ 
+  def mark_notifications_as_read
+    if current_user
+      notifications_to_mark_as_read = @article.notifications_as_article.where(recipient: current_user)
+      notifications_to_mark_as_read.update_all(read_at: Time.zone.now)
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
